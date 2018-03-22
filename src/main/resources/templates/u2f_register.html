@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>U2F registration page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/u2f-api.js"></script>
+    <script th:inline="javascript">
+/*<![CDATA[*/
+var requestData = /*[[${data}]]*/ '';
+var request = JSON.parse(requestData);
+setTimeout(function() {
+    u2f.register(
+         request.appId,
+        request.registerRequests,
+        request.registeredKeys,
+    function(data) {
+        var form = document.getElementById('form');
+        var reg = document.getElementById('tokenResponse');
+        if(data.errorCode) {
+            alert("U2F failed with error: " + data.errorCode);
+            return;
+        }
+        reg.value=JSON.stringify(data);
+        form.submit();
+    });
+}, 1000);
+/*]]>*/
+</script>
+</head>
+<body>
+<main role="main" class="container">
+
+    <div class="template">
+
+<h1 th:text="#{u2f.register.headline}">Register U2F device</h1>
+
+<h2 th:text="#{u2f.register.text}">Register new U2F device</h2>
+<p th:text="#{u2f.touch.button}">Touch your U2F token.</p>
+<form method="post" th:action="@{/u2fregister}" id="form" onsubmit="return false;">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="hidden" name="tokenResponse" id="tokenResponse"/>
+</form>
+</div>
+</main>
+<footer th:replace="fragments :: footer">
+</footer>
+
+</body>
+</html>

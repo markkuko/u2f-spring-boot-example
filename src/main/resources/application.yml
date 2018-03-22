@@ -1,0 +1,50 @@
+# application.yml
+
+logging:
+  level:
+    fi:
+      solita:
+        u2f: DEBUG
+
+
+endpoints:
+  enabled: false
+  info:
+    enabled: true
+  health:
+    enabled: true
+  metrics:
+    enabled: true
+  env:
+    enabled: true
+management:
+  port: 8081
+  security:
+    enabled: true
+security:
+  basic:
+    enabled: false
+project:
+  name: u2f
+  version: 0.1
+  description:
+
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+
+version: ${project.version}
+
+---
+spring:
+  profiles: default
+
+server:
+  port: 8443
+  contextPath: /
+  ssl:
+    key-store: classpath:server.jks
+    key-store-password: password
+    key-password: password

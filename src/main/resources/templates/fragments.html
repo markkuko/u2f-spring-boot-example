@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav th:fragment="navbar" class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}" th:text="#{nav.index}">Index</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/home}" th:text="#{nav.home}">Hone</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/logout}" th:text="#{nav.logout}">Hone</a>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>
+
+<main role="main" class="container">
+
+    <div class="template">
+        <h1 th:text="#{home.headline}">Home</h1>
+
+        <p th:text="#{home.welcome} + ' ' + ${#authentication.name}"></p>
+    </div>
+</main>
+
+<footer th:fragment="footer" class="footer">
+    <div class="container">
+
+
+        <p th:text="#{copyright}">copyright</p>
+
+    </div>
+</footer>
+</body>
+</html>

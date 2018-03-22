@@ -1,0 +1,6 @@
+[ {
+  "_class" : "fi.solita.u2f.domain.User",
+  "username" : "user",
+  "password" : "{bcrypt}$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG3YB1tlRy.fqvM/BG",
+  "mfaEnabled" : false
+}]

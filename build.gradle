@@ -1,0 +1,47 @@
+buildscript {
+    ext{
+        springBootVersion = '2.0.0.RELEASE'
+    }
+    repositories {
+        jcenter()
+        mavenCentral()
+
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.owasp:dependency-check-gradle:3.1.0")
+    }
+}
+
+group 'fi.solita.java'
+version '0.1.0-SNAPSHOT'
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'org.owasp.dependencycheck'
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+    compile("org.springframework.data:spring-data-keyvalue:2.0.5.RELEASE")
+    compile("org.springframework.data:spring-data-commons:2.0.5.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
+    compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE")
+    compile("org.bouncycastle:bcprov-jdk15on:1.58")
+    compile("org.webjars:bootstrap:4.0.0")
+    compile("com.yubico:u2flib-server-core:0.19.0")
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+}

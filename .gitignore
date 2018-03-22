@@ -1,0 +1,6 @@
+.idea
+.gradle
+build
+docs
+out
+server.jks

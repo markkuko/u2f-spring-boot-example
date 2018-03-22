@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Index page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav th:replace="fragments :: navbar">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/" th:text="#{nav.index}">Index</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/home" th:text="#{nav.home}">Hone</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout" th:text="#{nav.logout}">Hone</a>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>
+
+<main role="main" class="container">
+
+    <div class="template">
+        <h1 th:text="#{index.headline}">Welcome</h1>
+
+        <p th:text="#{index.welcome}  + ' ' + ${#authentication.name}" />
+    </div>
+</main>
+<footer th:replace="fragments :: footer">
+</footer>
+
+</body>
+</html>

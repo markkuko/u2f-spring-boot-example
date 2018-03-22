@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head lang="en">
+
+    <title>Login page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+<h1 class="h3 mb-3 font-weight-normal" th:text="#{login.authenticate}">Authenticate</h1>
+
+    <p class="text-center">
+        <a th:href="@{/registration}" th:text="#{login.registration.link}">Not registered?</a>
+    </p>
+
+<form method="post" class="form-signin" action="#" th:action="@{/login}"  id="form">
+    <div th:if="${errorMessage}">
+        <div class="alert alert-danger" th:text="#{login.error}">
+            Invalid username or password.
+        </div>
+    </div>
+    <div th:if="${param.registrationSuccess}">
+        <div class="alert alert-success" th:text="#{login.success.message}">
+            Invalid username or password.
+        </div>
+    </div>
+
+    <label for="username" class="sr-only" th:text="#{login.username.label}">Username name:</label>
+    <input type="username" name="username" id="username"  class="form-control"
+           placeholder="Username"
+           required autofocus/>
+    <label for="password"  class="sr-only" th:text="#{login.password.label}">Password: </label>
+    <input type="password" name="password" id="password"  class="form-control"
+           placeholder="Password" required/>
+    <button class="btn btn-lg btn-primary btn-block" type="submit"
+            name="submit" id="submit" th:text="#{login.submit}">Log in</button>
+</form>
+
+</div>
+<footer th:replace="fragments :: footer">
+</footer>
+
+</body>
+</html>
