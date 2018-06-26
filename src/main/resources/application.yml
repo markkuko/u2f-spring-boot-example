@@ -46,5 +46,5 @@ server:
   contextPath: /
   ssl:
     key-store: classpath:server.jks
-    key-store-password: password
-    key-password: password
+    key-store-password: changeitpass
+    key-password: changeitpass
