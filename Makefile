@@ -1,7 +1,7 @@
 
 
 # Dependency check
-depcheck:
+dep-check:
 	./gradlew clean dependencyCheckAnalyze
 
 # Generate server side keyfile
