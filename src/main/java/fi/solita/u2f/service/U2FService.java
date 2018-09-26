@@ -56,7 +56,6 @@ public class U2FService {
 
     public SignRequestData initAuthentication(String username)
         throws NoEligibleDevicesException, U2fBadConfigurationException{
-        List<Device> userDevices = devices.findByUsername(username);
         SignRequestData requestData = u2f.startSignature(Constants.SERVER_ADDRESS,
                 getRegistrations(username));
         U2FAuthRequest u2FAuthRequest = new U2FAuthRequest();
@@ -128,7 +127,7 @@ public class U2FService {
     private List<DeviceRegistration> getRegistrations(String username) {
         List<Device> findRegistrationsByUsername =
                 devices.findByUsername(username);
-        List<DeviceRegistration> deviceList = new ArrayList<DeviceRegistration>();
+        List<DeviceRegistration> deviceList = new ArrayList<>();
         for(Device device: findRegistrationsByUsername) {
             deviceList.add(device.getDeviceRegistration());
         }
@@ -137,7 +136,7 @@ public class U2FService {
     }
     private void grantAuthority() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(auth.getAuthorities());
+        List<GrantedAuthority> authorities = new ArrayList<>(auth.getAuthorities());
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         Authentication newAuth = new UsernamePasswordAuthenticationToken(
                 auth.getPrincipal(), auth.getCredentials(), authorities);

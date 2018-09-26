@@ -13,12 +13,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.security.cert.CertificateException;
 import java.util.Map;
 
 @Controller
@@ -30,7 +26,7 @@ public class MFARegistrationController {
 
     private static final Logger log = LoggerFactory.getLogger(MFARegistrationController.class);
 
-    @RequestMapping(value ="/u2fregister", method = RequestMethod.GET)
+    @GetMapping(path="/u2fregister")
     public String startRegistration(Map<String, Object> model) throws U2fBadConfigurationException{
         log.debug("MFARegistration initialization start.");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -38,14 +34,13 @@ public class MFARegistrationController {
         RegisterRequestData registerRequestData = u2FService.initRegistration(username);
         model.put("data", registerRequestData.toJson());
 
-        return "u2f_register";//RegistrationView(registerRequestData.toJson(), username);
+        return "u2f_register";
     }
 
-    @RequestMapping(value = "/u2fregister",  method = RequestMethod.POST)
+    @PostMapping(path= "/u2fregister")
     public String finishRegistration(Map<String, Object> model,
                                      @RequestParam String tokenResponse)
-            throws CertificateException, NoSuchFieldException,
-            U2fRegistrationException, U2fBadInputException {
+            throws U2fRegistrationException, U2fBadInputException {
         log.debug("MFARegistration verification start.");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();

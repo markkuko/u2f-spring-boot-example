@@ -1,6 +1,5 @@
 package fi.solita.u2f.domain;
 
-import com.yubico.u2f.data.DeviceRegistration;
 import com.yubico.u2f.data.messages.SignRequestData;
 import org.springframework.data.annotation.Id;
 

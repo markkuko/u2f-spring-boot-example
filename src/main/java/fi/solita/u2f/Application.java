@@ -19,13 +19,13 @@ public class Application implements CommandLineRunner {
 
 
     @Override
-    public void run(String... arg0) throws Exception {
+    public void run(String... arg0) {
         if (arg0.length > 0 && arg0[0].equals("exitcode")) {
             throw new Application.ExitException();
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         new SpringApplication(Application.class).run(args);
     }
 

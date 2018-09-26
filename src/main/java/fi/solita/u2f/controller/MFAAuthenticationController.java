@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -28,7 +26,7 @@ public class MFAAuthenticationController {
 
     @Autowired
     U2FService u2FService;
-    @RequestMapping(method= RequestMethod.GET, value= "/u2fauth")
+    @GetMapping(path= "/u2fauth")
     public String startAuthentication(Map<String, Object> model)
             throws NoEligibleDevicesException,U2fBadConfigurationException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -50,13 +48,13 @@ public class MFAAuthenticationController {
         return "u2f_auth";
     }
 
-    @RequestMapping(method= RequestMethod.POST, value= "/u2fauth")
+    @PostMapping(path= "/u2fauth")
     public String finishAuthentication(Map<String, Object> model,
                                        @RequestParam String tokenResponse
                                        ) throws
-            U2fBadInputException, U2fAuthenticationException {
+            U2fBadInputException{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();;
+        String username = auth.getName();
         log.debug("Starting authentication validation, username {}", username);
         SignResponse response = SignResponse.fromJson(tokenResponse);
 

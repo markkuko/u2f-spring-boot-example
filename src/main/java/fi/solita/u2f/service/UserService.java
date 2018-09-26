@@ -27,27 +27,27 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         try {
             User user = userRepository.findByUsername(username);
             if (user == null) {
                 log.debug("user not found with the provided username");
                 return null;
             }
-            log.debug(" user from username " + user.toString());
+            log.debug(" user from username {}", user);
             return new org.springframework.security.core.userdetails.User
-                    (user.getUsername(), user.getPassword(), getAuthorities(user));
+                    (user.getUsername(), user.getPassword(), getAuthorities());
         }
         catch (Exception e){
             throw new UsernameNotFoundException("User not found");
         }
     }
 
-    private Set<GrantedAuthority> getAuthorities(User user){
+    private Set<GrantedAuthority> getAuthorities(){
         Set<GrantedAuthority> authorities = new HashSet<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_PREAUTH_USER"));
 
-        log.debug("user authorities are " + authorities.toString());
+        log.debug("user authorities are {}", authorities);
         return authorities;
     }
 
