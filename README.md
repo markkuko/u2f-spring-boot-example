@@ -8,5 +8,3 @@ The U2F-library requires https connection, the make command
 generates the server.jks (src/main/resources/server.jks) automatically.
 The keystore credentials etc is configured in [src/main/resources/application.yml](src/main/resources/application.yml)
 
-
-

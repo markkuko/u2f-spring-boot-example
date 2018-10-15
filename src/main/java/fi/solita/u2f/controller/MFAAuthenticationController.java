@@ -37,7 +37,7 @@ public class MFAAuthenticationController {
             log.debug("User null, username {}", username);
             return "redirect:/u2fregister";
         }
-        if(user.isMfaEnabled() == null || !user.isMfaEnabled().booleanValue()) {
+        if(user.getMfaEnabled() == null || !user.getMfaEnabled().booleanValue()) {
             return "redirect:/u2fregister";
         }
         SignRequestData requestData = u2FService.initAuthentication(
