@@ -18,6 +18,9 @@ build/libs/$(jar-file): src/main/resources/server.jks
 
 run-jar: build/libs/$(jar-file)
 	java --illegal-access=deny -jar build/libs/$(jar-file)
+
+versions:
+	./gradlew dependencyUpdates 
 # Deletes server.jks
 clean-key:
 	rm src/main/resources/server.jks
