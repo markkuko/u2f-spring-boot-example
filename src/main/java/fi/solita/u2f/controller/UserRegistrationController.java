@@ -18,7 +18,7 @@ import java.util.Map;
 public class UserRegistrationController {
 
     private static final Logger log = LoggerFactory.getLogger(UserRegistrationController.class);
-    private static final String REGISTRATION = "/registration";
+    private static final String REGISTRATION = "registration";
     @Autowired
     UserRepository userRepository;
 

@@ -30,7 +30,7 @@ public class MFARegistrationController {
     public String startRegistration(Map<String, Object> model) throws U2fBadConfigurationException{
         log.debug("MFARegistration initialization start.");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
+        var username = auth.getName();
         RegisterRequestData registerRequestData = u2FService.initRegistration(username);
         model.put("data", registerRequestData.toJson());
 
@@ -43,7 +43,7 @@ public class MFARegistrationController {
             throws U2fRegistrationException, U2fBadInputException {
         log.debug("MFARegistration verification start.");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
+        var username = auth.getName();
         RegisterResponse registerResponse = RegisterResponse.fromJson(tokenResponse);
         boolean verification = u2FService.verifyRegistration(registerResponse,
                 username);

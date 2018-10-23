@@ -54,7 +54,7 @@ public class MFAAuthenticationController {
                                        ) throws
             U2fBadInputException{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
+        var username = auth.getName();
         log.debug("Starting authentication validation, username {}", username);
         SignResponse response = SignResponse.fromJson(tokenResponse);
 

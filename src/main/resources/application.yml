@@ -40,6 +40,9 @@ version: ${project.version}
 ---
 spring:
   profiles: default
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
 
 server:
   port: 8443
